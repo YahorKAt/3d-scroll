@@ -1,0 +1,139 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--index: calc(1vw + 1vh);
+	--gutter: 30px;
+	--side-small: 26;
+	--side-big: 36;
+	--depth: 4000px;
+	--transition: 0.75s cubic-bezier(0.75, 0.5, 0, 1);
+}
+
+@font-face {
+	font-family: releway_c;
+	src: url(../fonts/raleway-v22-cyrillic-300.woff2);
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: releway_c;
+	src: url(../fonts/raleway-v22-cyrillic-100.woff2);
+	font-weight: 100;
+}
+
+body {
+	background-color: black;
+	color: white;
+	font-size: calc(var(--index) * 0.8);
+	font-family: releway_c, sans-serif;
+	line-height: 1.75;
+	height: var(--depth);
+	font-weight: 300;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	perspective: 1500px;
+}
+
+.gallery {
+	transform-style: preserve-3d;
+	height: 100%;
+}
+
+.frame {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: var(--transition), opacity 0.75s ease; /* затемнение */
+	will-change: transform; /* для задействия аппарутных ресурсов */
+	transform-style: preserve-3d;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: 100;
+	text-transform: uppercase;
+	width: min-content;
+	line-height: 1;
+}
+
+.frame h2 {
+	text-align: center;
+	font-size: calc(var(--index) * 3.3);
+}
+
+.frame-media {
+	position: relative;
+	width: calc(var(--index) * var(--side-small));
+	height: calc(var(--index) * var(--side-big));
+	background-position: center;
+	background-size: cover;
+}
+
+.frame-media_left {
+	right: calc(var(--side-small) / 2 * var(--index) + var(--gutter));
+}
+
+.frame-media_right {
+	left: calc(var(--side-small) / 2 * var(--index) + var(--gutter));
+}
+.frame_bg {
+	background-color: rgb(0 0 0 / 0.88);
+}
+
+video.frame-media {
+	width: calc(var(--index) * var(--side-big));
+	height: calc(var(--index) * var(--side-small));
+}
+
+video.frame-media_right {
+	left: calc(var(--side-big) / 2 * var(--index) + var(--gutter));
+}
+
+video.frame-media_left {
+	right: calc(var(--side-small) / 2 * var(--index) + var(--gutter));
+}
+
+.text-right > * {
+	position: relative;
+	left: 18vw;
+}
+
+.text-left > * {
+	position: relative;
+	right: 18vw;
+}
+
+.frame h3 {
+	font-size: calc(var(--index) * 3);
+}
+
+.frame p {
+	max-width: 30vw;
+	margin-top: 5vh;
+}
+
+.soundbutton {
+	position: fixed;
+	bottom: 5vh;
+	right: 5vw;
+	cursor: pointer;
+	width: 24px;
+	transition: 0.25s ease;
+}
+
+.soundbutton.paused {
+	opacity: 0.25;
+}
